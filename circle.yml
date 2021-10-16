@@ -1,0 +1,7 @@
+machine:
+  java:
+    version: openjdk7
+
+test:
+  override:
+    - javac -d bin src/*.java src/classes/*.java src/db/*.java src/mgr/*.java src/ui/*.java src/user_lib/*.java

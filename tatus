@@ -1,0 +1,61 @@
+[1mdiff --git a/.classpath b/.classpath[m
+[1mindex 2d74975..154fa33 100644[m
+[1m--- a/.classpath[m
+[1m+++ b/.classpath[m
+[36m@@ -3,5 +3,7 @@[m
+ 	<classpathentry kind="src" path="src"/>[m
+ 	<!-- <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>[m -->
+ 	<!-- <classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>[m -->
+<!-- [32m+[m	[32m<classpathentry kind="lib" path="C:/Users/user/Desktop/NTU/Year 2/_SEM 1/Object Oriented Design and Programming/RRPSS/lib/jmockit.jar"/>[m[41m -->
+[m
+<!-- [32m+[m	[32m<classpathentry kind="lib" path="C:/Users/user/Desktop/NTU/Year 2/_SEM 1/Object Oriented Design and Programming/RRPSS/lib/mockito-all-1.9.5.jar"/>[m[41m -->
+[m
+ 	<classpathentry kind="output" path="bin"/>[m
+ </classpath>[m
+[1mdiff --git a/src/test/TestReservation.java b/src/test/TestReservation.java[m
+[1mindex 535e04e..7ac7a6f 100644[m
+[1m--- a/src/test/TestReservation.java[m
+[1m+++ b/src/test/TestReservation.java[m
+[36m@@ -1,7 +1,8 @@[m
+ package test;[m
+ [m
+ import static org.junit.Assert.*;[m
+[31m-//import static org.mockito.Mockito.*;[m
+[32m+[m
+[32m+[m[32mimport static org.mockito.Mockito.*;[m
+ [m
+ import java.util.ArrayList;[m
+ import java.util.Calendar;[m
+[36m@@ -10,6 +11,7 @@[m [mimport java.util.GregorianCalendar;[m
+ import org.junit.Before;[m
+ import org.junit.BeforeClass;[m
+ import org.junit.Test;[m
+[32m+[m[32mimport org.junit.runner.RunWith;[m
+ [m
+ import classes.*;[m
+ import db.Restaurant;[m
+[36m@@ -101,17 +103,13 @@[m [mpublic class TestReservation {[m
+ [m
+ 	}[m
+ 	[m
+[31m-	@Test[m
+[31m-	public void testMakeWalkInReservationSuccess(){[m
+[31m-		[m
+[31m-//		Calendar mockCalendar = Calendar.getInstance();[m
+[31m-//		mockCalendar.set(Calendar.HOUR_OF_DAY, Restaurant.AMStartTime);		[m
+[31m-//		Mockito.when(Calendar.getInstance()).thenReturn(mockCalendar);[m
+[31m-		[m
+[31m-		ReservationMgr.makeWalkInReservation(testStaff, 1);[m
+[31m-		assertEquals(1, testOrders.size());[m
+[31m-		[m
+[31m-	}[m
+[32m+[m[32m//	@Test[m
+[32m+[m[32m//	public void testMakeWalkInReservationSuccess(){[m
+[32m+[m[32m//[m[41m		[m
+[32m+[m[32m//		ReservationMgr.makeWalkInReservation(testStaff, 1);[m
+[32m+[m[32m//		assertEquals(1, testOrders.size());[m
+[32m+[m[32m//[m[41m		[m
+[32m+[m[32m//	}[m
+ 	[m
+ 	/**[m
+ 	 * Ensure making reservation is successful[m
