@@ -19,6 +19,11 @@ public class OrderMgr {
 	private static ArrayList<Order> settledOrders = Restaurant.settledOrders;
 	
 	public static void moveToSettledOrder(Order order){
+		if (settledOrders == null)
+			Restaurant.initSettledOrders();
+			
+		settledOrders = Restaurant.settledOrders;
+		System.out.println(settledOrders);
 		settledOrders.add(order);
 		orders.remove(order);
 	}
