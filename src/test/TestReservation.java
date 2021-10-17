@@ -64,6 +64,7 @@ public class TestReservation {
 	 */
 	@Test
 	public void testMakeReservationWhenFull() {
+		testReservations.clear();
 
 		Reservation newReservation;
 		Calendar reserveCal = Calendar.getInstance();
@@ -79,6 +80,7 @@ public class TestReservation {
 			testReservations.add(newReservation);
 			index++;
 		}
+
 		assertEquals(testTables.size(), testReservations.size()); // confirm full reservation
 		int fullReservationSize = testReservations.size();
 
@@ -145,6 +147,10 @@ public class TestReservation {
 	 */
 	@Test
 	public void testRemoveExpiredReservation() {
+		// for (int i=0; i<testReservations.size(); i++) {
+		// 	System.out.println(testReservations.get(i).getReservationID());
+		// }
+		ReservationMgr.reservations.clear();
 
 		Calendar reserveCal;
 		Calendar now = Calendar.getInstance();
@@ -162,12 +168,12 @@ public class TestReservation {
 		for (Table t : testTables) {
 			reserveCal = new GregorianCalendar(year, month, day, hour, minute);
 			newReservation = new Reservation("cust" + index, index, t.getCapacity(), reserveCal, t);
-			testReservations.add(newReservation);
+			ReservationMgr.reservations.add(newReservation);
 			index++;
 		}
 
 		ReservationMgr.removeExpiredReservation();
-		assertEquals(0, testReservations.size());
+		assertEquals(0, ReservationMgr.reservations.size());
 
 	}
 
