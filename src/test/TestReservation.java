@@ -32,22 +32,29 @@ public class TestReservation {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-
+		Restaurant.initTables();
 		testTables = Restaurant.tables;
+		Restaurant.initReservations();
 		testReservations = Restaurant.reservations;
+		Restaurant.initOrders();
 		testOrders = Restaurant.orders;
+		Restaurant.initStaff();
 		testStaff = Restaurant.staffs.get(0);
 
 	}
 
 	@Before
 	public void setUp() throws Exception {
-
+		Restaurant.initSettledReservations();
 		Restaurant.settledReservations.clear();
+		Restaurant.initReservations();
 		Restaurant.reservations.clear();
+		Restaurant.initOrders();
 		Restaurant.orders.clear();
+		Restaurant.initInvoices();
 		Restaurant.invoices.clear();
 
+		Restaurant.initTables();
 		for (Table t : Restaurant.tables)
 			t.getReservedBy().clear();
 	}
@@ -129,7 +136,7 @@ public class TestReservation {
 		reserveCal.set(Calendar.MILLISECOND, 0);
 
 		ReservationMgr.makeReservation("MakeReservationCustomer", 98765432, 1, reserveCal);
-		assertEquals(1, testReservations.size()); // ensure reservation size still same
+		assertEquals(1, ReservationMgr.reservations.size()); // ensure reservation size still same
 
 	}
 

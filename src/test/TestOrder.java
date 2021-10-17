@@ -35,6 +35,7 @@ public class TestOrder {
 		testTables = Restaurant.tables;
 		testReservations = Restaurant.reservations;
 		testOrders = Restaurant.orders;
+		Restaurant.initStaff();
 		testStaff = Restaurant.staffs.get(0);
 		
 	}

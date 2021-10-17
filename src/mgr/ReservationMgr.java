@@ -25,7 +25,7 @@ public class ReservationMgr {
 
 	private static Scanner sc = new Scanner (System.in);
 	
-	private static ArrayList<Reservation> reservations = Restaurant.reservations;
+	public static ArrayList<Reservation> reservations = Restaurant.reservations;
 	private static ArrayList<Reservation> settledReservations = Restaurant.settledReservations;
 	
 	/**
