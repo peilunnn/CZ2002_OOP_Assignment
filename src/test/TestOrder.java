@@ -18,6 +18,7 @@ import ui.OrderUI;
 
 /**
  * Test order class and methods
+ * 
  * @author soh jun jie
  * @version 1.0
  * @since 2016-11-3
@@ -28,7 +29,7 @@ public class TestOrder {
 	private static ArrayList<Reservation> testReservations;
 	private static ArrayList<Order> testOrders;
 	private static Staff testStaff;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 
@@ -37,53 +38,52 @@ public class TestOrder {
 		testOrders = Restaurant.orders;
 		Restaurant.initStaff();
 		testStaff = Restaurant.staffs.get(0);
-		System.out.println("test");
-		
+
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 		Restaurant.settledReservations.clear();
 		Restaurant.reservations.clear();
 		Restaurant.orders.clear();
 		Restaurant.invoices.clear();
-		
-		for(Table t : Restaurant.tables)
+
+		for (Table t : Restaurant.tables)
 			t.getReservedBy().clear();
-		
+
 	}
 
 	/**
-	 * Ensure table status changes to VACATED after invoice
-	 * printed
+	 * Ensure table status changes to VACATED after invoice printed
 	 */
 	@Test
 	public void testTableReleaseAfterInvoicePrinted() {
-		
+
 		Calendar now = Calendar.getInstance();
-		
+
 		Table reserveTable = testTables.get(0);
-		Reservation newReservation = new Reservation("TestCustomer", 98765432, reserveTable.getCapacity(), now, reserveTable);
+		Reservation newReservation = new Reservation("TestCustomer", 98765432, reserveTable.getCapacity(), now,
+				reserveTable);
 		testReservations.add(newReservation);
-		
+
 		// Reservation for the table must be 1 due to being reserved
 		assertEquals(1, reserveTable.getReservedBy().size());
-		
+
 		// Table status must switch to occupied once accepted, order must be created
 		ReservationMgr.acceptReservation(testStaff, newReservation);
 		assertEquals(Table.TableStatus.OCCUPIED, reserveTable.getStatus());
 		assertEquals(1, testOrders.size());
-		
+
 		Order order = testOrders.get(0);
 		Class<OrderUI> c = OrderUI.class;
 
 		@SuppressWarnings("rawtypes")
 		Class[] cArg = new Class[1];
-        cArg[0] = Order.class;
-		
+		cArg[0] = Order.class;
+
 		Method method = null;
-		
+
 		try {
 			method = c.getDeclaredMethod("printInvoice", cArg);
 		} catch (NoSuchMethodException e1) {
@@ -91,9 +91,9 @@ public class TestOrder {
 		} catch (SecurityException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		method.setAccessible(true);
-		
+
 		// Table reserved by must be removed, status must be vacated
 		try {
 			method.invoke(null, order);
@@ -106,7 +106,7 @@ public class TestOrder {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
