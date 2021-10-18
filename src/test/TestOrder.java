@@ -37,6 +37,7 @@ public class TestOrder {
 		testOrders = Restaurant.orders;
 		Restaurant.initStaff();
 		testStaff = Restaurant.staffs.get(0);
+		System.out.println("test");
 		
 	}
 

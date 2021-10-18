@@ -25,7 +25,7 @@ import mgr.ReservationMgr;
 // @PrepareForTest(Calendar.class)
 public class TestReservation {
 
-	private static ArrayList<Table> testTables;
+	private static ArrayList<Table> testtables;
 	private static ArrayList<Reservation> testReservations;
 	private static ArrayList<Order> testOrders;
 	private static Staff testStaff;
@@ -33,7 +33,7 @@ public class TestReservation {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Restaurant.initTables();
-		testTables = Restaurant.tables;
+		testtables = Restaurant.tables;
 		Restaurant.initReservations();
 		testReservations = Restaurant.reservations;
 		Restaurant.initOrders();
@@ -75,13 +75,13 @@ public class TestReservation {
 		reserveCal.set(Calendar.MILLISECOND, 0);
 
 		int index = 0;
-		for (Table t : testTables) {
+		for (Table t : testtables) {
 			newReservation = new Reservation("cust" + index, index, t.getCapacity(), reserveCal, t);
 			testReservations.add(newReservation);
 			index++;
 		}
 
-		assertEquals(testTables.size(), testReservations.size()); // confirm full reservation
+		assertEquals(testtables.size(), testReservations.size()); // confirm full reservation
 		int fullReservationSize = testReservations.size();
 
 		ReservationMgr.makeReservation("MakeReservationWhenFullCustomer", 98765432, 1, reserveCal);
@@ -96,12 +96,12 @@ public class TestReservation {
 		Calendar now = Calendar.getInstance();
 
 		int index = 0;
-		for (Table t : testTables) {
+		for (Table t : testtables) {
 			newReservation = new Reservation("cust" + index, index, t.getCapacity(), now, t);
 			testReservations.add(newReservation);
 			index++;
 		}
-		assertEquals(testTables.size(), testReservations.size()); // confirm full reservation
+		assertEquals(testtables.size(), testReservations.size()); // confirm full reservation
 		int fullReservationSize = testReservations.size();
 		int prevOrdersSize = testOrders.size();
 
@@ -148,7 +148,7 @@ public class TestReservation {
 	@Test
 	public void testRemoveExpiredReservation() {
 		// for (int i=0; i<testReservations.size(); i++) {
-		// 	System.out.println(testReservations.get(i).getReservationID());
+		// System.out.println(testReservations.get(i).getReservationID());
 		// }
 		ReservationMgr.reservations.clear();
 
@@ -165,7 +165,7 @@ public class TestReservation {
 
 		Reservation newReservation;
 		int index = 0;
-		for (Table t : testTables) {
+		for (Table t : testtables) {
 			reserveCal = new GregorianCalendar(year, month, day, hour, minute);
 			newReservation = new Reservation("cust" + index, index, t.getCapacity(), reserveCal, t);
 			ReservationMgr.reservations.add(newReservation);
