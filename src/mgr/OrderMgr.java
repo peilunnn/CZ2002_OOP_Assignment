@@ -23,7 +23,7 @@ public class OrderMgr {
 			Restaurant.initSettledOrders();
 			
 		settledOrders = Restaurant.settledOrders;
-		System.out.println(settledOrders);
+		// System.out.println(settledOrders);
 		settledOrders.add(order);
 		orders.remove(order);
 	}
